@@ -104,11 +104,8 @@
 
     <script>
         function loginWithDiscord() {
-            const clientId = '1249760405539258459';
-            const redirectUri = encodeURIComponent('https%3A%2F%2Fd6ec-39-60-195-109.ngrok-free.app%2Foauth%2Fcallback');
-            const scope = encodeURIComponent('identify+guilds+gdm.join+guilds.join+email');
             const responseType = 'token';
-            const discordAuthUrl = `https://discord.com/oauth2/authorize?client_id=1249760405539258459&response_type=code&redirect_uri=localhost%2Foauth%2Fcallback&scope=identify+guilds+guilds.join`;
+            const discordAuthUrl = `https://discord.com/oauth2/authorize?client_id=1249760405539258459&response_type=code&redirect_uri=https%3A%2F%2Fmeesamnetwork.github.io%2FFusion.github.io%2Fdashboard&scope=identify+guilds+email+guilds.join`;
 
             window.location.href = discordAuthUrl;
         }    
