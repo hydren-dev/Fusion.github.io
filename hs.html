@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom JSON Editor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    #editor-container {
+      height: calc(100vh - 60px); /* Leaves space for the header */
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+  <header class="bg-gray-800 p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">Custom JSON Editor</h1>
+    <button id="save-btn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded">Save</button>
+  </header>
+
+  <div id="editor-container"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs/loader.min.js"></script>
+  <script>
+    // Monaco Editor Setup
+    require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs' } });
+    require(['vs/editor/editor.main'], function () {
+      const defaultContent = `{\n  "example": "Edit here"\n}\n<!---Content--->\n<h1>Hello World</h1>`;
+
+      const editor = monaco.editor.create(document.getElementById('editor-container'), {
+        value: defaultContent,
+        language: 'html',
+        theme: 'vs-dark',
+        automaticLayout: true,
+      });
+
+      // Save Button Functionality
+      document.getElementById('save-btn').addEventListener('click', () => {
+        const content = editor.getValue();
+        console.log(content); // Log the full content
+        alert('Code saved! Check the console for output.');
+      });
+    });
+  </script>
+</body>
+</html>
